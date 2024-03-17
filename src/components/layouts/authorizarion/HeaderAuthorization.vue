@@ -28,7 +28,7 @@ import InputBase from '@/components/base/InputBase.vue'
     </nav>
 
     <div class="w-auto lg:w-3/12 justify-end gap-4 flex">
-      <LinkBase>Cadastre-se</LinkBase>
+      <LinkBase :to="{name: 'register'}">Cadastre-se</LinkBase>
       <LinkBase class="font-semibold">Enviar foto</LinkBase>
     </div>
   </header>

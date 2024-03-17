@@ -22,7 +22,7 @@ import TitlePage from '@/components/components/TitlePage.vue'
       <div class="flex flex-col gap-1">
         <div class="flex justify-between items-baseline">
           <LabelBase for="password">Senha</LabelBase>
-          <LinkBase class="mr-1">Esqueceu sua senha?</LinkBase>
+          <LinkBase :to="{name: 'forgot-password'}" class="mr-1">Esqueceu sua senha?</LinkBase>
         </div>
         <InputBase type="password" id="password" />
       </div>

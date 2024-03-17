@@ -7,7 +7,9 @@ import FooterAuthorization from '@/components/layouts/authorizarion/FooterAuthor
   <div class="w-full min-h-screen flex flex-col items-center bg-white">
     <HeaderAuthorization />
 
-    <slot></slot>
+    <div class="flex-1 w-full flex justify-center">
+      <slot></slot>
+    </div>
 
     <FooterAuthorization />
   </div>
