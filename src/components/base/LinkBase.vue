@@ -1,13 +1,22 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router'
+import { computed } from 'vue'
 
+const route = useRoute()
+
+const props = defineProps<{
+  to: any
+}>()
+
+const redirectTo = computed(() => {
+  return props.to ?? {name: route.name}
+})
 </script>
 
 <template>
-  <a class="underline text-granite-gray hover:text-raisin-black" href="">
+  <RouterLink :to="redirectTo" class="underline text-granite-gray hover:text-raisin-black">
     <slot></slot>
-  </a>
+  </RouterLink>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

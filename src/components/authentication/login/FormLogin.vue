@@ -20,7 +20,7 @@ import TitlePage from '@/components/components/TitlePage.vue'
       </div>
 
       <div class="flex flex-col gap-1">
-        <div class="flex justify-between">
+        <div class="flex justify-between items-baseline">
           <LabelBase for="password">Senha</LabelBase>
           <LinkBase class="mr-1">Esqueceu sua senha?</LinkBase>
         </div>
@@ -28,13 +28,13 @@ import TitlePage from '@/components/components/TitlePage.vue'
       </div>
 
       <div>
-        <ButtonPrimary> Entrar</ButtonPrimary>
+        <ButtonPrimary>Entrar</ButtonPrimary>
       </div>
     </form>
 
     <div class="p-2 text-center my-8">
       Não tem uma conta
-      <LinkBase class="">Cadastre-se</LinkBase>
+      <LinkBase :to="{name: 'register'}" class="">Cadastre-se</LinkBase>
     </div>
 
     <SocialLogin />

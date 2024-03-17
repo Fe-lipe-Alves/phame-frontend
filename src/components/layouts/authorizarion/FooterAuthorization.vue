@@ -4,7 +4,7 @@ import LinkBase from '@/components/base/LinkBase.vue'
 
 <template>
   <footer
-    class="text-sm flex flex-col lg:flex-row gap-x-16 gap-y-2 items-center justify-center text-granite-gray"
+    class="text-sm flex flex-col lg:flex-row gap-x-16 gap-y-2 items-center justify-center text-granite-gray mt-8"
   >
     <nav>
       <ul class="order-2 lg:order-1 flex gap-8">
