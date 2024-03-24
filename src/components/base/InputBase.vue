@@ -1,7 +1,9 @@
 <script setup lang="ts">
 interface Props {
-  type: string
+  type?: string
 }
+
+const model = defineModel()
 
 withDefaults(defineProps<Props>(), {
   type: 'text'
@@ -9,7 +11,7 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <input :type="type" class="py-2 px-4 rounded border border-gray-300">
+  <input :type="type" class="py-2 px-4 rounded border border-gray-300" v-model="model">
 </template>
 
 <style scoped>

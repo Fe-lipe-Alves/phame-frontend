@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import InputBase from '@/components/base/InputBase.vue'
+import LabelBase from '@/components/base/LabelBase.vue'
+
 interface Props {
   type?: string
   id: string
@@ -8,12 +11,14 @@ interface Props {
 withDefaults(defineProps<Props>(), {
   type: 'text'
 })
+
+const model = defineModel()
 </script>
 
 <template>
   <div class="flex flex-col gap-1">
-    <label :for="id">{{ label }}</label>
-    <input :id="id" :type="type" class="py-2 px-4 rounded border border-gray-300" >
+    <LabelBase :for="id">{{ label }}</LabelBase>
+    <InputBase :id="id" :type="type" />
   </div>
 </template>
 

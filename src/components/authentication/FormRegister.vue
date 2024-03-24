@@ -6,6 +6,21 @@ import TitlePage from '@/components/components/TitlePage.vue'
 import LabelBase from '@/components/base/LabelBase.vue'
 import ButtonPrimary from '@/components/components/ButtonPrimary.vue'
 import InputWithLabel from '@/components/components/InputWithLabel.vue'
+import backend from '@/services/backend/backend'
+import useForm from '@/support/form/use-form'
+
+const form = useForm({
+  name: '',
+  username: '',
+  email: '',
+  password: '',
+})
+
+async function save() {
+  form.
+
+  form.send(backend.register)
+}
 </script>
 
 <template>
@@ -14,17 +29,17 @@ import InputWithLabel from '@/components/components/InputWithLabel.vue'
       <TitlePage>Crie sua conta agora</TitlePage>
     </div>
 
-    <form class="flex flex-col gap-6">
-      <InputWithLabel id="name" label="Nome" />
+    <form class="flex flex-col gap-6" @submit.prevent="save">
+      <InputWithLabel v-model="form.name" id="name" label="Nome" />
 
-      <InputWithLabel id="email" label="E-mail" type="email" />
+      <InputWithLabel v-model="form.email" id="email" label="E-mail" type="email" />
 
       <div class="flex flex-col gap-1">
         <div class="flex justify-between items-baseline">
           <LabelBase for="username">Nome de usuário</LabelBase>
           <small class="mr-1 text-granite-gray">Somente letras, números e sublinhado</small>
         </div>
-        <InputBase id="username" />
+        <InputBase v-model="form.username" id="username" />
       </div>
 
       <div class="flex flex-col gap-1">
@@ -32,7 +47,7 @@ import InputWithLabel from '@/components/components/InputWithLabel.vue'
           <LabelBase for="password">Senha</LabelBase>
           <small class="mr-1 text-granite-gray">Mínimo 8 caracteres</small>
         </div>
-        <InputBase id="password" type="password" />
+        <InputBase v-model="form.password" id="password" type="password" />
       </div>
 
       <div>

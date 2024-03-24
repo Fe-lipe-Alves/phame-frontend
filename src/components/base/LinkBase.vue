@@ -2,11 +2,13 @@
 import { useRoute } from 'vue-router'
 import { computed } from 'vue'
 
+interface Props {
+  to?: any
+}
+
 const route = useRoute()
 
-const props = defineProps<{
-  to: any
-}>()
+const props = defineProps<Props>()
 
 const redirectTo = computed(() => {
   return props.to ?? {name: route.name}
