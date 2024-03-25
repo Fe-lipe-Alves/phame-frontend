@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import LinkBase from '@/components/base/LinkBase.vue'
 </script>
 
 <template>
-  <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+
+  <LinkBase :to="{name: 'login'}">Login</LinkBase>
 </template>

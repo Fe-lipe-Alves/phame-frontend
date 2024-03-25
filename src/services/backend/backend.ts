@@ -20,7 +20,13 @@ async function register(input: any) {
   return data
 }
 
+async function test(input: any) {
+  const { data } = await request('/api/test').post(input)
+  return data
+}
+
 export default {
   login,
   register,
+  test,
 }

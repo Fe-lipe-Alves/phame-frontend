@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import InputBase from '@/components/base/InputBase.vue'
 import LabelBase from '@/components/base/LabelBase.vue'
+import InputFeedback from '@/components/components/InputFeedback.vue'
 
 interface Props {
   type?: string
   id: string
   label: string
+  error?: string[]
+  success?: string[]
 }
 
 withDefaults(defineProps<Props>(), {
-  type: 'text'
+  type: 'text',
 })
 
 const model = defineModel()
@@ -18,7 +21,9 @@ const model = defineModel()
 <template>
   <div class="flex flex-col gap-1">
     <LabelBase :for="id">{{ label }}</LabelBase>
-    <InputBase :id="id" :type="type" />
+    <InputBase v-model="model" :id="id" :type="type" />
+    <InputFeedback type="danger" :message="error" v-if="error" />
+    <InputFeedback type="success" :message="success" v-if="success" />
   </div>
 </template>
 
