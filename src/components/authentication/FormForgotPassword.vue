@@ -2,25 +2,69 @@
 import TitlePage from '@/components/components/TitlePage.vue'
 import ButtonPrimary from '@/components/components/ButtonPrimary.vue'
 import InputWithLabel from '@/components/components/InputWithLabel.vue'
+import { Form } from '@/support/form/Form'
+import backend from '@/services/backend/backend'
+import router from '@/router'
+import { ref } from 'vue'
+
+const form = new Form({
+  email: ''
+})
+
+const error = ref('')
+const success = ref('')
+
+function submit() {
+  form
+    .onSuccess((response) => {
+      success.value = response.message
+    })
+    .onFail(() => {
+      error.value = 'Ocorreu um erro. Tente novamente.'
+    })
+    .send(backend.forgotPassword)
+}
 </script>
 
 <template>
   <main class="w-full lg:w-5/12 bg-white p-8 lg:p-12 lg:rounded-2xl">
     <div class="my-8 text-center">
       <TitlePage>Esqueceu sua senha?</TitlePage>
+
       <p>
         Enviaremos um e-mail com um link de redefinição de senha. Informe o endereço de e-mail
         associado à sua conta.
       </p>
     </div>
 
-    <form class="flex flex-col gap-6">
-      <InputWithLabel id="email" label="E-mail" type="email" />
+    <form class="flex flex-col gap-6" @submit.prevent="submit">
+      <InputWithLabel
+        v-model="form.fields.email"
+        id="email"
+        label="E-mail"
+        type="email"
+        :error="form.errors.email"
+        required
+      />
 
       <div>
-        <ButtonPrimary>Enviar link</ButtonPrimary>
+        <ButtonPrimary :disabled="form.processing.value">Enviar link</ButtonPrimary>
       </div>
     </form>
+
+    <div
+      v-if="error"
+      class="text-red-700 bg-red-100 border border-red-300 rounded flex items-center justify-center p-1 mt-2"
+    >
+      <small>{{ error }}</small>
+    </div>
+
+    <div
+      v-if="success"
+      class="text-green-700 bg-green-100 border border-green-300 rounded flex items-center justify-center p-1 mt-2"
+    >
+      <small>{{ success }}</small>
+    </div>
   </main>
 </template>
 

@@ -3,6 +3,37 @@ import TitlePage from '@/components/components/TitlePage.vue'
 import ButtonPrimary from '@/components/components/ButtonPrimary.vue'
 import InputBase from '@/components/base/InputBase.vue'
 import LabelBase from '@/components/base/LabelBase.vue'
+import InputWithLabel from '@/components/components/InputWithLabel.vue'
+import { Form } from '@/support/form/Form'
+import InputFeedback from '@/components/components/InputFeedback.vue'
+import { useRoute } from 'vue-router'
+import { onMounted, ref } from 'vue'
+import backend from '@/services/backend/backend'
+import router from '@/router'
+
+const route = useRoute()
+
+const form = new Form({
+  token: route.query?.token,
+  email: route.query?.email,
+  password: '',
+  password_confirmation: ''
+})
+
+const error = ref('')
+
+function submit() {
+  console.log(form)
+
+  form
+    .onSuccess((response) => {
+      router.push({name: 'login'})
+    })
+    .onFail(() => {
+      error.value = 'Ocorreu um erro. Tente novamente.'
+    })
+    .send(backend.resetPassword)
+}
 </script>
 
 <template>
@@ -11,14 +42,29 @@ import LabelBase from '@/components/base/LabelBase.vue'
       <TitlePage>Insira sua nova senha</TitlePage>
     </div>
 
-    <form class="flex flex-col gap-6">
+    <div
+      v-if="error"
+      class="text-red-700 bg-red-100 border border-red-300 rounded flex items-center justify-center p-1 mt-2"
+    >
+      <small>{{ error }}</small>
+    </div>
+
+    <form class="flex flex-col gap-6" @submit.prevent="submit">
       <div class="flex flex-col gap-1">
         <div class="flex justify-between items-baseline">
           <LabelBase for="password">Nova senha</LabelBase>
           <small class="mr-1 text-granite-gray">Mínimo 8 caracteres</small>
         </div>
-        <InputBase id="password" type="password" />
+        <InputBase id="password" type="password" v-model="form.fields.password" />
+        <InputFeedback type="danger" :message="form.errors.password" />
       </div>
+
+      <InputWithLabel
+        v-model="form.fields.password_confirmation"
+        id="password_confirmation"
+        type="password"
+        label="Confirmação de senha"
+      />
 
       <div>
         <ButtonPrimary>Salvar senha</ButtonPrimary>

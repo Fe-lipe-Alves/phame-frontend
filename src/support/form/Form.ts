@@ -1,4 +1,4 @@
-import type { UnwrapNestedRefs } from 'vue'
+import { type Ref, ref, type UnwrapNestedRefs } from 'vue'
 import { reactive } from 'vue'
 import type { AxiosResponse } from 'axios'
 import { FormEvents } from '@/support/form/FormEvents'
@@ -8,6 +8,7 @@ export class Form<TForm extends object> extends FormEvents {
   // @ts-ignore
   errors: UnwrapNestedRefs<Record<keyof TForm, Array<string>>>
   response: AxiosResponse | undefined
+  processing: Ref<boolean> = ref(false)
 
   constructor(fields: TForm) {
     super()
@@ -23,6 +24,8 @@ export class Form<TForm extends object> extends FormEvents {
   }
 
   async send(request: (input: any) => Promise<any>) {
+    this.processing.value = true
+
     this.clearErrors()
 
     return request(this.fields)
@@ -44,6 +47,7 @@ export class Form<TForm extends object> extends FormEvents {
         return error
       })
       .finally(() => {
+        this.processing.value = false
         this.events.onFinally()
       })
   }

@@ -24,5 +24,10 @@ export const authentication: Readonly<RouteRecordRaw[]> = [
     path: '/redefine-password',
     name: 'redefine-password',
     component: RedefinePasswordView
+  },
+  {
+    path: '/password-reset',
+    name: 'password-reset',
+    component: RedefinePasswordView
   }
 ]

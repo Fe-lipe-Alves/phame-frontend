@@ -11,6 +11,10 @@ interface Props {
   success?: string[]
 }
 
+defineOptions({
+  inheritAttrs: false
+})
+
 withDefaults(defineProps<Props>(), {
   type: 'text',
 })
@@ -21,7 +25,7 @@ const model = defineModel()
 <template>
   <div class="flex flex-col gap-1">
     <LabelBase :for="id">{{ label }}</LabelBase>
-    <InputBase v-model="model" :id="id" :type="type" />
+    <InputBase v-model="model" v-bind="$attrs" :id="id" :type="type" />
     <InputFeedback type="danger" :message="error" v-if="error" />
     <InputFeedback type="success" :message="success" v-if="success" />
   </div>
