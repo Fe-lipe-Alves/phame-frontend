@@ -6,27 +6,27 @@ import RedefinePasswordView from '@/views/Authentication/RedefinePasswordView.vu
 
 export const authentication: Readonly<RouteRecordRaw[]> = [
   {
-    path: '/login',
+    path: 'login',
     name: 'login',
     component: LoginView
   },
   {
-    path: '/register',
+    path: 'register',
     name: 'register',
     component: RegisterView
   },
   {
-    path: '/forgot-password',
+    path: 'forgot-password',
     name: 'forgot-password',
     component: ForgotPasswordView
   },
   {
-    path: '/redefine-password',
+    path: 'redefine-password',
     name: 'redefine-password',
     component: RedefinePasswordView
   },
   {
-    path: '/password-reset',
+    path: 'password-reset',
     name: 'password-reset',
     component: RedefinePasswordView
   }

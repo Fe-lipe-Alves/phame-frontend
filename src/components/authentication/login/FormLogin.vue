@@ -9,6 +9,7 @@ import backend from '@/services/backend/backend'
 import { reactive } from 'vue'
 import router from '@/router'
 import _ from 'lodash'
+import { __ } from '@/support/helpers'
 
 const form = reactive({
   email: '',
@@ -32,7 +33,8 @@ function login() {
       router.push({ name: 'home' })
     })
     .catch((e) => {
-      const message = _.get(e, 'response.data.errors.email[0]') || 'Ocorreu um erro. Tente novamente.'
+      const message =
+        _.get(e, 'response.data.errors.email[0]') || __('An error has occurred. Try again.')
       showError(message)
     })
 }
@@ -41,7 +43,7 @@ function login() {
 <template>
   <main class="w-full lg:w-5/12 bg-white p-8 lg:p-12 lg:rounded-2xl">
     <div class="my-8 text-center">
-      <TitlePage>Acesse sua conta</TitlePage>
+      <TitlePage>{{ __('Access your account') }}</TitlePage>
     </div>
 
     <div
@@ -53,26 +55,28 @@ function login() {
 
     <form class="flex flex-col gap-6" @submit.prevent="login">
       <div class="flex flex-col gap-1">
-        <LabelBase for="email">Email</LabelBase>
+        <LabelBase for="email">{{ __('Email') }}</LabelBase>
         <InputBase type="email" id="email" v-model="form.email" />
       </div>
 
       <div class="flex flex-col gap-1">
         <div class="flex justify-between items-baseline">
-          <LabelBase for="password">Senha</LabelBase>
-          <LinkBase :to="{ name: 'forgot-password' }" class="mr-1">Esqueceu sua senha?</LinkBase>
+          <LabelBase for="password">{{ __('Password') }}</LabelBase>
+          <LinkBase :to="{ name: 'forgot-password' }" class="mr-1">{{
+            __('Forgot your password?')
+          }}</LinkBase>
         </div>
         <InputBase type="password" id="password" v-model="form.password" />
       </div>
 
       <div>
-        <ButtonPrimary>Entrar</ButtonPrimary>
+        <ButtonPrimary>{{ __('Login') }}</ButtonPrimary>
       </div>
     </form>
 
     <div class="p-2 text-center my-8">
-      Não tem uma conta
-      <LinkBase :to="{ name: 'register' }" class="">Cadastre-se</LinkBase>
+      {{ __("Don't have an account?") }}
+      <LinkBase :to="{ name: 'register' }" class="">{{ __('Register') }}</LinkBase>
     </div>
 
     <SocialLogin />
