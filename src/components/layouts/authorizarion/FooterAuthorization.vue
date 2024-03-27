@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import LinkBase from '@/components/base/LinkBase.vue'
+import { __ } from '@/support/helpers'
 </script>
 
 <template>
@@ -9,13 +10,13 @@ import LinkBase from '@/components/base/LinkBase.vue'
     <nav>
       <ul class="order-2 lg:order-1 flex gap-8">
         <li>
-          <LinkBase>Política de Privacidade</LinkBase>
+          <LinkBase>{{ __('Privacy policy') }}</LinkBase>
         </li>
         <li>
-          <LinkBase>Termos de uso</LinkBase>
+          <LinkBase>{{ __('Terms of use') }}</LinkBase>
         </li>
         <li>
-          <LinkBase>Central de ajuda</LinkBase>
+          <LinkBase>{{ __('Help Center') }}</LinkBase>
         </li>
       </ul>
     </nav>

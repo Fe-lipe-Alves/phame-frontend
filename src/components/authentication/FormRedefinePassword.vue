@@ -7,9 +7,10 @@ import InputWithLabel from '@/components/components/InputWithLabel.vue'
 import { Form } from '@/support/form/Form'
 import InputFeedback from '@/components/components/InputFeedback.vue'
 import { useRoute } from 'vue-router'
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import backend from '@/services/backend/backend'
 import router from '@/router'
+import { __ } from '@/support/helpers'
 
 const route = useRoute()
 
@@ -27,10 +28,10 @@ function submit() {
 
   form
     .onSuccess((response) => {
-      router.push({name: 'login'})
+      router.push({ name: 'login' })
     })
     .onFail(() => {
-      error.value = 'Ocorreu um erro. Tente novamente.'
+      error.value = __('An error has occurred. Try again.')
     })
     .send(backend.resetPassword)
 }
@@ -39,7 +40,7 @@ function submit() {
 <template>
   <main class="w-full lg:w-5/12 bg-white p-8 lg:p-12 lg:rounded-2xl">
     <div class="my-8 text-center">
-      <TitlePage>Insira sua nova senha</TitlePage>
+      <TitlePage>{{ __('Enter your new password') }}</TitlePage>
     </div>
 
     <div
@@ -52,8 +53,8 @@ function submit() {
     <form class="flex flex-col gap-6" @submit.prevent="submit">
       <div class="flex flex-col gap-1">
         <div class="flex justify-between items-baseline">
-          <LabelBase for="password">Nova senha</LabelBase>
-          <small class="mr-1 text-granite-gray">Mínimo 8 caracteres</small>
+          <LabelBase for="password">{{ __('New password') }}</LabelBase>
+          <small class="mr-1 text-granite-gray">{{ __('Minimum 8 characters') }}</small>
         </div>
         <InputBase id="password" type="password" v-model="form.fields.password" />
         <InputFeedback type="danger" :message="form.errors.password" />
@@ -63,11 +64,11 @@ function submit() {
         v-model="form.fields.password_confirmation"
         id="password_confirmation"
         type="password"
-        label="Confirmação de senha"
+        :label="__('Password Confirmation')"
       />
 
       <div>
-        <ButtonPrimary>Salvar senha</ButtonPrimary>
+        <ButtonPrimary>{{ __('Save password') }}</ButtonPrimary>
       </div>
     </form>
   </main>

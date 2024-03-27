@@ -11,6 +11,7 @@ import { Form } from '@/support/form/Form'
 import { ref } from 'vue'
 import InputFeedback from '@/components/components/InputFeedback.vue'
 import router from '@/router'
+import { __ } from '@/support/helpers'
 
 const form = new Form({
   name: '',
@@ -28,7 +29,7 @@ async function save() {
       router.push({ name: 'home' })
     })
     .onFail(() => {
-      error.value = 'Ocorreu um erro. Tente novamente.'
+      error.value = __('An error has occurred. Try again.')
     })
     .send(backend.register)
 }
@@ -37,7 +38,7 @@ async function save() {
 <template>
   <main class="w-full lg:w-5/12 bg-white p-8 lg:p-12 lg:rounded-2xl">
     <div class="my-8 text-center">
-      <TitlePage>Crie sua conta agora</TitlePage>
+      <TitlePage>{{ __('Create your account now') }}</TitlePage>
     </div>
 
     <div
@@ -48,20 +49,27 @@ async function save() {
     </div>
 
     <form class="flex flex-col gap-6" @submit.prevent="save">
-      <InputWithLabel v-model="form.fields.name" id="name" label="Nome" :error="form.errors.name" />
+      <InputWithLabel
+        v-model="form.fields.name"
+        id="name"
+        :label="__('Name')"
+        :error="form.errors.name"
+      />
 
       <InputWithLabel
         v-model="form.fields.email"
         id="email"
-        label="E-mail"
+        :label="__('Email')"
         type="email"
         :error="form.errors.email"
       />
 
       <div class="flex flex-col gap-1">
         <div class="flex justify-between items-baseline">
-          <LabelBase for="username">Nome de usuário</LabelBase>
-          <small class="mr-1 text-granite-gray">Somente letras, números e sublinhado</small>
+          <LabelBase for="username">{{ __('Username') }}</LabelBase>
+          <small class="mr-1 text-granite-gray">{{
+            __('Only letters, numbers and underscore')
+          }}</small>
         </div>
         <InputBase v-model="form.fields.username" id="username" />
         <InputFeedback type="danger" :message="form.errors.username" />
@@ -69,8 +77,8 @@ async function save() {
 
       <div class="flex flex-col gap-1">
         <div class="flex justify-between items-baseline">
-          <LabelBase for="password">Senha</LabelBase>
-          <small class="mr-1 text-granite-gray">Mínimo 8 caracteres</small>
+          <LabelBase for="password">{{ __('Password') }}</LabelBase>
+          <small class="mr-1 text-granite-gray">{{ __('Minimum 8 characters') }}</small>
         </div>
         <InputBase v-model="form.fields.password" id="password" type="password" />
         <InputFeedback type="danger" :message="form.errors.password" />
@@ -78,19 +86,19 @@ async function save() {
 
       <InputWithLabel
         id="password_confirmation"
-        label="Confirmação de senha"
+        :label="__('Password Confirmation')"
         type="password"
         v-model="form.fields.password_confirmation"
       />
 
       <div>
-        <ButtonPrimary>Cadastrar</ButtonPrimary>
+        <ButtonPrimary>{{ __('Register') }}</ButtonPrimary>
       </div>
     </form>
 
     <div class="p-2 text-center my-8">
-      Já tem uma conta
-      <LinkBase :to="{ name: 'login' }" class="">Entre aqui</LinkBase>
+      {{ __('Already have an account?') }}
+      <LinkBase :to="{ name: 'login' }" class="">{{ __('Log in') }}</LinkBase>
     </div>
 
     <SocialLogin />

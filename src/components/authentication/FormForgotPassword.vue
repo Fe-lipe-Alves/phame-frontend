@@ -4,8 +4,8 @@ import ButtonPrimary from '@/components/components/ButtonPrimary.vue'
 import InputWithLabel from '@/components/components/InputWithLabel.vue'
 import { Form } from '@/support/form/Form'
 import backend from '@/services/backend/backend'
-import router from '@/router'
 import { ref } from 'vue'
+import { __ } from '@/support/helpers'
 
 const form = new Form({
   email: ''
@@ -20,7 +20,7 @@ function submit() {
       success.value = response.message
     })
     .onFail(() => {
-      error.value = 'Ocorreu um erro. Tente novamente.'
+      error.value = __('An error has occurred. Try again.')
     })
     .send(backend.forgotPassword)
 }
@@ -29,11 +29,10 @@ function submit() {
 <template>
   <main class="w-full lg:w-5/12 bg-white p-8 lg:p-12 lg:rounded-2xl">
     <div class="my-8 text-center">
-      <TitlePage>Esqueceu sua senha?</TitlePage>
+      <TitlePage>{{ __('Forgot your password?') }}</TitlePage>
 
       <p>
-        Enviaremos um e-mail com um link de redefinição de senha. Informe o endereço de e-mail
-        associado à sua conta.
+        {{ __('We will send you an email with a password reset link. Enter the email address associated with your account.') }}
       </p>
     </div>
 
@@ -41,14 +40,14 @@ function submit() {
       <InputWithLabel
         v-model="form.fields.email"
         id="email"
-        label="E-mail"
+        :label="__('Email')"
         type="email"
         :error="form.errors.email"
         required
       />
 
       <div>
-        <ButtonPrimary :disabled="form.processing.value">Enviar link</ButtonPrimary>
+        <ButtonPrimary :disabled="form.processing.value">{{ __('Send link') }}</ButtonPrimary>
       </div>
     </form>
 
