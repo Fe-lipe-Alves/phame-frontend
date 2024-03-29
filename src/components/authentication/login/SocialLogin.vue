@@ -9,7 +9,6 @@ import { __ } from '@/support/helpers'
       {{ __('Continue with Google') }}
     </SocialButtonLogin>
 
-
     <SocialButtonLogin image="https://auth.services.adobe.com/img/social/f_logo_RGB-Blue_58.png">
       {{ __('Continue with Facebook') }}
     </SocialButtonLogin>

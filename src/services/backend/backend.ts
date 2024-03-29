@@ -1,7 +1,11 @@
 import request from '@/services/backend/request'
-import  backend from '@/services/backend/backend'
 
 // const controllers: { [k in keyof backend]: { controller: AbortController; sending: boolean } } = {}
+
+async function auth() {
+  const { data } = await request('/api/auth').post({})
+  return data
+}
 
 async function forgotPassword(input: any) {
   await request('/sanctum/csrf-cookie').get()
@@ -40,6 +44,7 @@ async function test(input: any) {
 }
 
 export default {
+  auth,
   forgotPassword,
   login,
   register,

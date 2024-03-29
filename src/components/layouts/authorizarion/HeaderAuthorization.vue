@@ -11,7 +11,7 @@ import { __ } from '@/support/helpers'
     </form>
 
     <div>
-      <h1 class="font-open-sans text-lg font-semibold">Phrame</h1>
+      <h1 class="font-open-sans text-lg font-semibold">Phr<span class="text-zinc-500">ame</span></h1>
     </div>
 
     <nav class="hidden lg:block">

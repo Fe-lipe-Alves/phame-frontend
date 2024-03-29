@@ -3,6 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import { authentication } from '@/router/authentication'
 import { Lang, type TLangs } from '@/support/lang/lang'
 import { setLang } from '@/support/helpers'
+import { applyMiddleware } from '@/router/middleware'
+import { applyTitle } from '@/router/titled'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,7 +13,7 @@ const router = createRouter({
       path: '/',
       name: 'initial',
       redirect: (to) => {
-        const lang = to.params?.lang ?? Lang.default as any
+        const lang = to.params?.lang ?? (Lang.default as any)
         return { name: 'home', params: { lang: lang } }
       }
     },
@@ -32,6 +34,11 @@ const router = createRouter({
       ]
     }
   ]
+})
+
+router.beforeEach((to, fron, next) => {
+  applyTitle(to)
+  applyMiddleware(to, next)
 })
 
 export default router

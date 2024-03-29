@@ -10,6 +10,9 @@ import { reactive } from 'vue'
 import router from '@/router'
 import _ from 'lodash'
 import { __ } from '@/support/helpers'
+import { useAuthStore } from '@/stores/auth'
+
+const authStore = useAuthStore()
 
 const form = reactive({
   email: '',
@@ -27,7 +30,7 @@ function showError(text: string) {
 }
 
 function login() {
-  backend
+  authStore
     .login(form)
     .then(() => {
       router.push({ name: 'home' })
@@ -62,9 +65,9 @@ function login() {
       <div class="flex flex-col gap-1">
         <div class="flex justify-between items-baseline">
           <LabelBase for="password">{{ __('Password') }}</LabelBase>
-          <LinkBase :to="{ name: 'forgot-password' }" class="mr-1">{{
-            __('Forgot your password?')
-          }}</LinkBase>
+          <LinkBase :to="{ name: 'forgot-password' }" class="mr-1">
+            {{ __('Forgot your password?') }}
+          </LinkBase>
         </div>
         <InputBase type="password" id="password" v-model="form.password" />
       </div>

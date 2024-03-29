@@ -13,10 +13,10 @@ export class Request<RequestType, ResponseType> {
   constructor(uri: string) {
     this.uri = uri
 
-    this.axiosOptions = {
-      withCredentials: true,
-      withXSRFToken: true,
-    }
+    this.axiosOptions = {}
+
+    axios.defaults.withCredentials = true;
+    axios.defaults.withXSRFToken = true;
   }
 
   public abortController(controller: AbortController) {
@@ -62,6 +62,8 @@ export class Request<RequestType, ResponseType> {
   private send() {
     this.axiosOptions.url = new Url(this.uri).resolve()
     this.axiosOptions.headers = this.headers()
+
+    console.log(this.axiosOptions)
 
     return axios.request<RequestType, AxiosResponse<ResponseType>>(this.axiosOptions)
   }
