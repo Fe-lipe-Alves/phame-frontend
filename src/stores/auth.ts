@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { onMounted, reactive, type UnwrapNestedRefs } from 'vue'
+import { reactive } from 'vue'
 import { User } from '@/models/user'
 import backend from '@/services/backend/backend'
 
@@ -8,50 +8,46 @@ interface IAuth {
   checked: boolean
 }
 
-export const useAuthStore = defineStore('auth-store', () => {
-  const auth = reactive<IAuth>({
-    user: undefined,
-    checked: false,
-  })
-
-  function authenticated(): boolean {
-    return !!getUser()
-  }
-
-  async function login(form: { email: string; password: string }) {
-    const response = await backend.login(form).then(response => response)
-
-    await backend.auth().then(response => {
-      const user = new User().fill(response)
-      setUser(user)
+export const useAuthStore = defineStore(
+  'auth-store',
+  () => {
+    const auth = reactive<IAuth>({
+      user: undefined,
+      checked: false
     })
 
-    return response
-  }
-
-  function getUser(): UnwrapNestedRefs<User>|undefined {
-    if (auth.user) {
-      return auth.user
+    function authenticated(): boolean {
+      updateState()
+      return auth.checked
     }
 
-    const session = localStorage.getItem('auth.user')
-    if (session) {
-      const user = new User().fill(JSON.parse(session))
-      setUser(user)
-      return user;
+    async function login(form: { email: string; password: string }) {
+      const response = await backend.login(form).then((response) => response)
+
+      await backend.auth().then((response) => {
+        const user = new User().fill(response)
+        setUser(user)
+      })
+
+      return response
     }
 
-    return undefined
-  }
+    function setUser(user: User) {
+      auth.user = user
+      updateState()
+    }
 
-  function setUser(user: User) {
-    auth.user = user
-    localStorage.setItem('auth.user', JSON.stringify(user))
-  }
+    function updateState() {
+      auth.checked = !!auth.user
+    }
 
-  return {
-    auth,
-    authenticated,
-    login,
+    return {
+      auth,
+      authenticated,
+      login
+    }
+  },
+  {
+    persist: true
   }
-})
+)
