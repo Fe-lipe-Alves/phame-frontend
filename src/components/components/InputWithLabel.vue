@@ -16,7 +16,7 @@ defineOptions({
 })
 
 withDefaults(defineProps<Props>(), {
-  type: 'text',
+  type: 'text'
 })
 
 const model = defineModel()
@@ -31,6 +31,4 @@ const model = defineModel()
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

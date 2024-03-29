@@ -1,28 +1,21 @@
 import { defineStore } from 'pinia'
-import { reactive } from 'vue'
+import { computed, reactive } from 'vue'
 import { User } from '@/models/user'
 import backend from '@/services/backend/backend'
-
-interface IAuth {
-  user?: User
-  checked: boolean
-}
 
 export const useAuthStore = defineStore(
   'auth-store',
   () => {
-    const auth = reactive<IAuth>({
-      user: undefined,
-      checked: false
+    const auth = reactive<{ user?: User }>({
+      user: undefined
     })
 
-    function authenticated(): boolean {
-      updateState()
-      return auth.checked
-    }
+    const authenticated = computed<boolean>(() => {
+      return !!auth.user
+    })
 
     async function login(form: { email: string; password: string }) {
-      const response = await backend.login(form).then((response) => response)
+      const response = await backend.login(form)
 
       await backend.auth().then((response) => {
         const user = new User().fill(response)
@@ -32,19 +25,26 @@ export const useAuthStore = defineStore(
       return response
     }
 
-    function setUser(user: User) {
-      auth.user = user
-      updateState()
+    async function logout() {
+      return backend.logout().then((response) => {
+        reset()
+        return response
+      })
     }
 
-    function updateState() {
-      auth.checked = !!auth.user
+    function reset() {
+      auth.user = undefined
+    }
+
+    function setUser(user: User) {
+      auth.user = user
     }
 
     return {
       auth,
       authenticated,
-      login
+      login,
+      logout
     }
   },
   {

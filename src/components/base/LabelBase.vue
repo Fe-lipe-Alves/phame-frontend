@@ -1,6 +1,4 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <label class="ml-1">
@@ -8,6 +6,4 @@
   </label>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

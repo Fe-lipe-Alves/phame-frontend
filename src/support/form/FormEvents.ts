@@ -15,11 +15,11 @@ interface IEvents {
 
 export class FormEvents {
   events: IEvents = {
-    onError: (response: Response): void => {},
-    onSuccess: (response: Response): void => {},
-    onTest: (response: Response): void => {},
-    onFail: (response: Response): void => {},
-    onFinally: (): void => {},
+    onError: (): void => {},
+    onSuccess: (): void => {},
+    onTest: (): void => {},
+    onFail: (): void => {},
+    onFinally: (): void => {}
   }
 
   onSuccess(callback: EventCallback) {

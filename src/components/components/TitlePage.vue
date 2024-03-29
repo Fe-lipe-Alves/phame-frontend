@@ -1,6 +1,4 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <h2 class="font-open-sans text-2xl font-semibold mb-2">
@@ -8,6 +6,4 @@
   </h2>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

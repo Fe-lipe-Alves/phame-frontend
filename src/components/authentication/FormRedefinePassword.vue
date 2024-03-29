@@ -27,7 +27,7 @@ function submit() {
   console.log(form)
 
   form
-    .onSuccess((response) => {
+    .onSuccess(() => {
       router.push({ name: 'login' })
     })
     .onFail(() => {

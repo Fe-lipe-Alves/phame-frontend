@@ -5,7 +5,6 @@ import InputBase from '@/components/base/InputBase.vue'
 import LabelBase from '@/components/base/LabelBase.vue'
 import ButtonPrimary from '@/components/components/ButtonPrimary.vue'
 import TitlePage from '@/components/components/TitlePage.vue'
-import backend from '@/services/backend/backend'
 import { reactive } from 'vue'
 import router from '@/router'
 import _ from 'lodash'
@@ -15,8 +14,8 @@ import { useAuthStore } from '@/stores/auth'
 const authStore = useAuthStore()
 
 const form = reactive({
-  email: '',
-  password: ''
+  email: 'test@example.com',
+  password: 'test123'
 })
 
 const error = reactive({

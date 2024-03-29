@@ -4,19 +4,19 @@ import { es } from '@/support/lang/dictionaries/es'
 import { en } from '@/support/lang/dictionaries/en'
 
 export type TLangs = {
-  'pt-br': Dictionary,
-  es: Dictionary,
-  en: Dictionary,
+  'pt-br': Dictionary
+  es: Dictionary
+  en: Dictionary
 }
 
 export class Lang {
   using: Dictionary
   langs: TLangs = {
     'pt-br': ptBr,
-    'es': es,
-    'en': en
+    es: es,
+    en: en
   }
-  static default: (string & keyof TLangs) = 'pt-br'
+  static default: string & keyof TLangs = 'pt-br'
 
   constructor() {
     this.using = this.langs[Lang.default]

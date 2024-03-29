@@ -24,6 +24,11 @@ async function login(input: any) {
   return data
 }
 
+async function logout() {
+  const { data } = await request('/logout').post()
+  return data
+}
+
 async function register(input: any) {
   await request('/sanctum/csrf-cookie').get()
 
@@ -47,7 +52,8 @@ export default {
   auth,
   forgotPassword,
   login,
+  logout,
   register,
   resetPassword,
-  test,
+  test
 }

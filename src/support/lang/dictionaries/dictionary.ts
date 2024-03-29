@@ -7,13 +7,13 @@ export interface Dictionary {
   'Continue with Facebook': string
   'Continue with Microsoft': string
   'Create your account now': string
-  'Don\'t have an account?': string
+  "Don't have an account?": string
   'Enter your new password': string
   Email: string
   Explore: string
   'Forgot your password?': string
   'Help Center': string
-  'Locations': string
+  Locations: string
   'Log in': string
   Login: string
   'Minimum 8 characters': string

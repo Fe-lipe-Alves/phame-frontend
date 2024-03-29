@@ -11,7 +11,7 @@ const route = useRoute()
 const props = defineProps<Props>()
 
 const redirectTo = computed(() => {
-  return props.to ?? {name: route.name}
+  return props.to ?? { name: route.name }
 })
 </script>
 

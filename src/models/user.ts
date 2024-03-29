@@ -21,8 +21,5 @@ export class User extends Model implements IUser {
   created_at?: moment.Moment
   updated_at?: moment.Moment
 
-  datetime = [
-    'created_at',
-    'updated_at',
-  ]
+  datetime = ['created_at', 'updated_at']
 }

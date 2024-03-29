@@ -15,8 +15,8 @@ export class Request<RequestType, ResponseType> {
 
     this.axiosOptions = {}
 
-    axios.defaults.withCredentials = true;
-    axios.defaults.withXSRFToken = true;
+    axios.defaults.withCredentials = true
+    axios.defaults.withXSRFToken = true
   }
 
   public abortController(controller: AbortController) {
@@ -24,29 +24,29 @@ export class Request<RequestType, ResponseType> {
     return this
   }
 
-  public async get(data: object = {}) {
+  public async get(data: object | undefined = undefined) {
     this.axiosOptions.params = data
     this.axiosOptions.method = 'GET'
     return await this.send()
   }
 
-  public async post(data: object) {
+  public async post(data: object | undefined = undefined) {
     return await this.bodyRequest('POST', data)
   }
 
-  public async patch(data: object) {
+  public async patch(data: object | undefined = undefined) {
     return await this.bodyRequest('PATCH', data)
   }
 
-  public async put(data: object) {
+  public async put(data: object | undefined = undefined) {
     return await this.bodyRequest('PUT', data)
   }
 
-  public async delete(data: object = {}) {
+  public async delete(data: object | undefined = undefined) {
     return await this.bodyRequest('DELETE', data)
   }
 
-  private async bodyRequest(method: string, data: object) {
+  private async bodyRequest(method: string, data: object | undefined) {
     this.axiosOptions.data = data
     this.axiosOptions.method = method
     return await this.send()
@@ -55,7 +55,7 @@ export class Request<RequestType, ResponseType> {
   private headers(): object {
     return {
       'content-type': 'application/json',
-      'Accept': 'application/json',
+      Accept: 'application/json'
     }
   }
 

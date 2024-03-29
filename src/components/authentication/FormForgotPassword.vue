@@ -17,7 +17,7 @@ const success = ref('')
 function submit() {
   form
     .onSuccess((response) => {
-      success.value = response.message
+      success.value = response.data.message
     })
     .onFail(() => {
       error.value = __('An error has occurred. Try again.')
@@ -32,7 +32,11 @@ function submit() {
       <TitlePage>{{ __('Forgot your password?') }}</TitlePage>
 
       <p>
-        {{ __('We will send you an email with a password reset link. Enter the email address associated with your account.') }}
+        {{
+          __(
+            'We will send you an email with a password reset link. Enter the email address associated with your account.'
+          )
+        }}
       </p>
     </div>
 

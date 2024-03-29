@@ -11,9 +11,7 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <input :type="type" class="py-2 px-4 rounded border border-gray-300" v-model="model">
+  <input :type="type" class="py-2 px-4 rounded border border-gray-300" v-model="model" />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
