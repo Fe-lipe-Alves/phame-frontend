@@ -9,14 +9,16 @@ export const authMiddleware = {
   middleware: 'auth'
 }
 
-export function applyMiddleware(to: RouteLocationNormalized, next: NavigationGuardNext) {
+export function applyMiddleware(to: RouteLocationNormalized, next: NavigationGuardNext): boolean {
   const authStore = useAuthStore()
 
   if (to.meta.middleware === 'authenticated' && !authStore.authenticated()) {
-    next({ name: 'login' })
+    next({ name: 'login', params: to.params })
   } else if (to.meta.middleware === 'guest' && authStore.authenticated()) {
-    next({ name: 'home' })
+    next({ name: 'home', params: to.params })
   } else {
     next()
+    return true
   }
+  return false
 }

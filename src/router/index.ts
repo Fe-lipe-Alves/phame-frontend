@@ -37,8 +37,10 @@ const router = createRouter({
 })
 
 router.beforeEach((to, fron, next) => {
-  applyTitle(to)
-  applyMiddleware(to, next)
+  const success = applyMiddleware(to, next)
+  if (success) {
+    applyTitle(to)
+  }
 })
 
 export default router
