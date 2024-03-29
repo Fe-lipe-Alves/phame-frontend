@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SocialButtonLogin from '@/components/authentication/login/SocialButtonLogin.vue'
+import SocialButtonLogin from '@/components/pages/authentication/login/SocialButtonLogin.vue'
 import { __ } from '@/support/helpers'
 </script>
 

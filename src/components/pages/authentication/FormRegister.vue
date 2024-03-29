@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import LinkBase from '@/components/base/LinkBase.vue'
 import InputBase from '@/components/base/InputBase.vue'
-import SocialLogin from '@/components/authentication/login/SocialLogin.vue'
+import SocialLogin from '@/components/pages/authentication/login/SocialLogin.vue'
 import TitlePage from '@/components/components/TitlePage.vue'
 import LabelBase from '@/components/base/LabelBase.vue'
 import ButtonPrimary from '@/components/components/ButtonPrimary.vue'

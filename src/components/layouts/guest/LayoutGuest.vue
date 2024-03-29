@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import HeaderAuthorization from '@/components/layouts/authorizarion/HeaderAuthorization.vue'
-import FooterAuthorization from '@/components/layouts/authorizarion/FooterAuthorization.vue'
+import HeaderAuthorization from '@/components/layouts/guest/HeaderGuest.vue'
+import FooterAuthorization from '@/components/layouts/guest/FooterGuest.vue'
 </script>
 
 <template>

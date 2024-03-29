@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import AuthorizationLayout from '@/components/layouts/authorizarion/AuthorizationLayout.vue'
-import FormRegister from '@/components/authentication/FormRegister.vue'
+import AuthorizationLayout from '@/components/layouts/guest/LayoutGuest.vue'
+import FormRegister from '@/components/pages/authentication/FormRegister.vue'
 </script>
 
 <template>

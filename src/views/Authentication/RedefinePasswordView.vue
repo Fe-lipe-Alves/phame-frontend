@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import AuthorizationLayout from '@/components/layouts/authorizarion/AuthorizationLayout.vue'
-import FormRedefinePassword from '@/components/authentication/FormRedefinePassword.vue'
+import AuthorizationLayout from '@/components/layouts/guest/LayoutGuest.vue'
+import FormRedefinePassword from '@/components/pages/authentication/FormRedefinePassword.vue'
 </script>
 
 <template>
