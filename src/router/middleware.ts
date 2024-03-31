@@ -11,6 +11,7 @@ export const authMiddleware = {
 
 export function applyMiddleware(to: RouteLocationNormalized, next: NavigationGuardNext): boolean {
   const authStore = useAuthStore()
+  console.log('restore = ', authStore.authenticated)
 
   if (to.meta.middleware === 'authenticated' && !authStore.authenticated) {
     next({ name: 'login', params: to.params })

@@ -2,16 +2,15 @@ import { defineStore } from 'pinia'
 import { computed, reactive } from 'vue'
 import { User } from '@/models/user'
 import backend from '@/services/backend/backend'
+import _ from 'lodash'
 
 export const useAuthStore = defineStore(
   'auth-store',
   () => {
-    const auth = reactive<{ user?: User }>({
-      user: undefined
-    })
+    const auth = reactive<{ user: User }>({} as { user: User })
 
     const authenticated = computed<boolean>(() => {
-      return !!auth.user
+      return !_.isEmpty(auth.user)
     })
 
     async function login(form: { email: string; password: string }) {
@@ -27,12 +26,13 @@ export const useAuthStore = defineStore(
 
     async function logout() {
       return backend.logout().then((response) => {
-        reset()
+        $reset()
         return response
       })
     }
 
-    function reset() {
+    function $reset() {
+      // @ts-ignore
       auth.user = undefined
     }
 
@@ -44,10 +44,15 @@ export const useAuthStore = defineStore(
       auth,
       authenticated,
       login,
-      logout
+      logout,
+      $reset,
     }
   },
   {
-    persist: true
+    persist: {
+      beforeRestore: (ctx) => {
+        console.log('about to restore',ctx.store.$state)
+      }
+    },
   }
 )

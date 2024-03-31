@@ -27,7 +27,7 @@ const router = createRouter({
         {
           path: '',
           name: 'home',
-          component: HomeView
+          component: () => import('../views/Home/HomeView.vue')
         },
 
         ...authentication
@@ -36,7 +36,7 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach((to, fron, next) => {
+router.beforeEach((to, from, next) => {
   const success = applyMiddleware(to, next)
   if (success) {
     applyTitle(to)
