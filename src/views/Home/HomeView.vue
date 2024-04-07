@@ -7,15 +7,9 @@ const authStore = useAuthStore()
 </script>
 
 <template>
-  <LayoutAuth v-if="authStore.$state.auth.user">
+  <LayoutAuth v-if="authStore.$state.auth.user"> </LayoutAuth>
 
-  </LayoutAuth>
-
-  <LayoutGuest v-else>
-
-  </LayoutGuest>
+  <LayoutGuest v-else> </LayoutGuest>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

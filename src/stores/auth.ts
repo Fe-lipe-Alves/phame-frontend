@@ -45,14 +45,14 @@ export const useAuthStore = defineStore(
       authenticated,
       login,
       logout,
-      $reset,
+      $reset
     }
   },
   {
     persist: {
       beforeRestore: (ctx) => {
-        console.log('about to restore',ctx.store.$state)
+        console.log('about to restore', ctx.store.$state)
       }
-    },
+    }
   }
 )
